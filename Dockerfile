@@ -1,4 +1,4 @@
-from openjdk:8-jre-alpine
+FROM openjdk:8-jre-alpine
 
 MAINTAINER Tomas Dvorak <todvora@gmail.com>
 
