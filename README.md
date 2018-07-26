@@ -17,3 +17,25 @@ docker build -t tdvorak/activemq .
 docker run -it -p 61616:61616 8161:8161 tdvorak/activemq:latest
 ```
 Bind more ports if you need to. 
+
+## Publish
+
+Get the latest image ID:
+
+``` 
+docker images
+```
+
+Use this ID to tag the image:
+
+```
+docker tag 30537052554f tdvorak/activemq:5.15.4
+
+```
+
+Push to the docker hub:
+
+```
+docker push tdvorak/activemq
+
+```
