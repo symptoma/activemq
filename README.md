@@ -5,7 +5,7 @@ Based on openjdk:8-jre-alpine, as lightweight as possible.
 Published on the Docker Hub: https://hub.docker.com/r/tdvorak/activemq/
 
 ## ActiveMQ version
-Current version of ActiveMQ is **5.15.4**
+Current version of ActiveMQ is **5.15.5**
 
 ## Build
 ```
