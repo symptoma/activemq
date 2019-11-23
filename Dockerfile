@@ -1,6 +1,6 @@
 FROM openjdk:8-jre-alpine
 
-MAINTAINER Tomas Dvorak <todvora@gmail.com>
+LABEL maintainer="Tomas Dvorak <dvorak@symptoma.com>"
 
 ENV ACTIVEMQ_VERSION 5.15.10
 ENV ACTIVEMQ apache-activemq-$ACTIVEMQ_VERSION

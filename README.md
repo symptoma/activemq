@@ -2,40 +2,23 @@
 
 Based on openjdk:8-jre-alpine, as lightweight as possible. 
 
-Published on the Docker Hub: https://hub.docker.com/r/tdvorak/activemq/
+Published on the Docker Hub: https://hub.docker.com/r/symptoma/activemq
 
 ## ActiveMQ version
+
 Current version of ActiveMQ is **5.15.10**
 
 ## Build
 ```
-docker build -t tdvorak/activemq . 
+docker build -t symptoma/activemq . 
 ```
 
 ## Run
 ```
-docker run -it -p 61616:61616 8161:8161 tdvorak/activemq:latest
+docker run -it -p 61616:61616 8161:8161 symptoma/activemq:latest
 ```
-Bind more ports if you need to. 
+Bind more ports if you need to.
 
 ## Publish
 
-Get the latest image ID:
-
-``` 
-docker images
-```
-
-Use this ID to tag the image:
-
-```
-docker tag 30537052554f tdvorak/activemq:5.15.10
-
-```
-
-Push to the docker hub:
-
-```
-docker push tdvorak/activemq
-
-```
+Each commit to master is automatically published to Docker Hub in the `latest` label. Tags are published in the corresponding versions.
