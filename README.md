@@ -22,3 +22,10 @@ Bind more ports if you need to.
 ## Publish
 
 Each commit to master is automatically published to Docker Hub in the `latest` label. Tags are published in the corresponding versions.
+
+Publishing manually works like this (after `docker login`):
+
+```
+docker tag f1aa123a520f symptoma/activemq:5.15.10
+docker push symptoma/activemq
+```
