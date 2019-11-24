@@ -6,7 +6,7 @@ Published on the Docker Hub: https://hub.docker.com/r/symptoma/activemq
 
 ## ActiveMQ version
 
-Current version of ActiveMQ is **5.15.10**
+Current version of ActiveMQ is **5.15.10**: https://activemq.apache.org/activemq-51510-release
 
 ## Build
 ```
