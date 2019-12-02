@@ -6,7 +6,7 @@ Published on the Docker Hub: https://hub.docker.com/r/symptoma/activemq
 
 ## ActiveMQ version
 
-Current version of ActiveMQ is **5.15.10**: https://activemq.apache.org/activemq-51510-release
+Current version of ActiveMQ is **5.15.11** (release notes pending): https://activemq.apache.org/download-archives
 
 ## Build
 ```
@@ -26,6 +26,6 @@ Each commit to master is automatically published to Docker Hub in the `latest` l
 Publishing manually works like this (after `docker login`):
 
 ```
-docker tag f1aa123a520f symptoma/activemq:5.15.10
+docker tag f1aa123a520f symptoma/activemq:5.15.11
 docker push symptoma/activemq
 ```
