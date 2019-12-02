@@ -21,6 +21,18 @@ Bind more ports if you need to.
 
 ## Publish
 
+First, commit your change to Git. 
+
+`git commit -m "Update ActiveMQ to 5.15.11"`
+
+Then tag it. 
+
+`git tag -a v5.15.11 -m 'Release 5.15.11'`
+
+Then push it to Github.
+
+`git push && git push origin --tags`
+
 Each commit to master is automatically published to Docker Hub in the `latest` label. Tags are published in the corresponding versions.
 
 Publishing manually works like this (after `docker login`):
