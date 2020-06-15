@@ -1,8 +1,8 @@
 FROM openjdk:8-jre-alpine
 
-LABEL maintainer="Tomas Dvorak <dvorak@symptoma.com>"
+LABEL maintainer="Thomas Lutz <lutz@symptoma.com>"
 
-ENV ACTIVEMQ_VERSION 5.15.12
+ENV ACTIVEMQ_VERSION 5.15.13
 ENV ACTIVEMQ apache-activemq-$ACTIVEMQ_VERSION
 ENV ACTIVEMQ_HOME /opt/activemq
 
