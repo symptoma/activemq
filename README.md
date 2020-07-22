@@ -6,7 +6,7 @@ Published on the Docker Hub: https://hub.docker.com/r/symptoma/activemq
 
 ## ActiveMQ version
 
-Current version of ActiveMQ is **5.15.13**: https://activemq.apache.org/activemq-51513-release
+Current version of ActiveMQ is **5.16.0**: https://activemq.apache.org/activemq-5160-release
 
 ## Build
 ```
@@ -23,11 +23,11 @@ Bind more ports if you need to.
 
 First, commit your change to Git. 
 
-`git commit -m "Update ActiveMQ to 5.15.13"`
+`git commit -m "Update ActiveMQ to 5.16.0"`
 
 Then tag it. 
 
-`git tag -a v5.15.13 -m 'Release 5.15.13'`
+`git tag -a v5.16.0 -m 'Release 5.16.0'`
 
 Then push it to Github.
 
@@ -38,6 +38,6 @@ Each commit to master is automatically published to Docker Hub in the `latest` l
 Publishing manually works like this (after `docker login`):
 
 ```
-docker tag f1aa123a520f symptoma/activemq:5.15.13
+docker tag f1aa123a520f symptoma/activemq:5.16.0
 docker push symptoma/activemq
 ```
