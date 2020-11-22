@@ -15,7 +15,7 @@ docker build -t symptoma/activemq .
 
 ## Run
 ```
-docker run -it -p 61616:61616 8161:8161 symptoma/activemq:latest
+docker run -it -p 61616:61616 -p 8161:8161 symptoma/activemq:latest
 ```
 Bind more ports if you need to.
 
