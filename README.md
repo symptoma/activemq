@@ -8,6 +8,8 @@ Published on the Docker Hub: https://hub.docker.com/r/symptoma/activemq
 
 Current version of ActiveMQ is **5.16.0**: https://activemq.apache.org/activemq-5160-release
 
+Note: Since 5.16.0 the Web Console is not reachable by default, as it only listens to 127.0.0.1 inside the container. See [AMQ-8018](https://issues.apache.org/jira/browse/AMQ-8018) for more details.
+
 ## Build
 ```
 docker build -t symptoma/activemq . 
