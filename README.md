@@ -1,6 +1,6 @@
 ## Dockerfile to build a ActiveMQ container image.
 
-Based on openjdk:8-jre-alpine, as lightweight as possible. 
+Based on [azul/zulu-openjdk-alpine:13-jre](https://hub.docker.com/r/azul/zulu-openjdk-alpine), as lightweight as possible. 
 
 Published on the Docker Hub: https://hub.docker.com/r/symptoma/activemq
 

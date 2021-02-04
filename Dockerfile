@@ -1,4 +1,4 @@
-FROM openjdk:8-jre-alpine
+FROM azul/zulu-openjdk-alpine:13-jre
 
 LABEL maintainer="Thomas Lutz <lutz@symptoma.com>"
 
