@@ -2,7 +2,7 @@ FROM azul/zulu-openjdk-alpine:13-jre
 
 LABEL maintainer="Thomas Lutz <lutz@symptoma.com>"
 
-ENV ACTIVEMQ_VERSION 5.16.1
+ENV ACTIVEMQ_VERSION 5.16.2
 ENV ACTIVEMQ apache-activemq-$ACTIVEMQ_VERSION
 ENV ACTIVEMQ_HOME /opt/activemq
 
