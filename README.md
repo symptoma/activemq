@@ -1,6 +1,6 @@
 ## Dockerfile to build a ActiveMQ container image.
 
-Based on [azul/zulu-openjdk-alpine:13-jre](https://hub.docker.com/r/azul/zulu-openjdk-alpine), as lightweight as possible. 
+Based on [bellsoft/liberica-openjdk-alpine:13](https://hub.docker.com/r/bellsoft/liberica-openjdk-alpine), as lightweight as possible AND multiarch (Support for Apple M1 chip / aarch64 aka ARM64). 
 
 Published on the Docker Hub: https://hub.docker.com/r/symptoma/activemq
 
@@ -12,7 +12,7 @@ Note: Since 5.16.0 the Web Console is not reachable by default, as it only liste
 
 ## Build
 ```
-docker build -t symptoma/activemq . 
+docker build -t symptoma/activemq .
 ```
 
 ## Run
@@ -25,11 +25,11 @@ Bind more ports if you need to.
 
 First, commit your change to Git. 
 
-`git commit -m "Update ActiveMQ to 5.16.2"`
+`git commit -m "Update ActiveMQ to 5.16.2 Multiarch"`
 
 Then tag it. 
 
-`git tag -a v5.16.2 -m 'Release 5.16.2'`
+`git tag -a v5.16.2-multiarch -m 'Release 5.16.2 Multiarch'`
 
 Then push it to Github.
 
@@ -40,6 +40,6 @@ Each commit to master is automatically published to Docker Hub in the `latest` l
 Publishing manually works like this (after `docker login`):
 
 ```
-docker tag f1aa123a520f symptoma/activemq:5.16.2
+docker tag f1aa123a520f symptoma/activemq:5.16.2-multiarch
 docker push symptoma/activemq
 ```

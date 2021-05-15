@@ -1,4 +1,4 @@
-FROM azul/zulu-openjdk-alpine:13-jre
+FROM bellsoft/liberica-openjdk-alpine:13
 
 LABEL maintainer="Thomas Lutz <lutz@symptoma.com>"
 
