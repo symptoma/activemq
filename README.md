@@ -25,11 +25,11 @@ Bind more ports if you need to.
 
 First, commit your change to Git. 
 
-`git commit -m "Update ActiveMQ to 5.16.2 Multiarch"`
+`git commit -m "Update ActiveMQ to 5.16.2"`
 
 Then tag it. 
 
-`git tag -a v5.16.2-multiarch -m 'Release 5.16.2 Multiarch'`
+`git tag -a v5.16.2 -m 'Release 5.16.2'`
 
 Then push it to Github.
 
@@ -40,6 +40,17 @@ Each commit to master is automatically published to Docker Hub in the `latest` l
 Publishing manually works like this (after `docker login`):
 
 ```
-docker tag f1aa123a520f symptoma/activemq:5.16.2-multiarch
+docker tag f1aa123a520f symptoma/activemq:5.16.2
 docker push symptoma/activemq
 ```
+
+## Multi Architecture Docker Build
+
+Prepare the buildx context and use it:
+
+* `docker buildx create`
+* `docker buildx use <name>`
+
+Then build for multiple platforms:
+
+* `docker buildx build --push --platform linux/arm,linux/arm64,linux/amd64 --tag symptoma/activemq:5.16.2-multiarch .`
