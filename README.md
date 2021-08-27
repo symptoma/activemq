@@ -53,4 +53,4 @@ Prepare the buildx context and use it:
 
 Then build for multiple platforms:
 
-* `docker buildx build --push --platform linux/arm,linux/arm64,linux/amd64 --tag symptoma/activemq:5.16.3-multiarch .`
+* `docker buildx build --push --platform linux/arm,linux/arm64,linux/amd64 --tag symptoma/activemq:5.16.3 .`
