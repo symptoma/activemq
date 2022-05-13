@@ -2,15 +2,15 @@ FROM bellsoft/liberica-openjdk-alpine:13
 
 LABEL maintainer="Thomas Lutz <lutz@symptoma.com>"
 
-ENV ACTIVEMQ_VERSION 5.17.0
+ENV ACTIVEMQ_VERSION 5.17.1
 ENV ACTIVEMQ apache-activemq-$ACTIVEMQ_VERSION
 ENV ACTIVEMQ_HOME /opt/activemq
 
 RUN apk add --update curl && \
     rm -rf /var/cache/apk/* && \
     mkdir -p /opt && \
-    curl -s -S https://archive.apache.org/dist/activemq/$ACTIVEMQ_VERSION/$ACTIVEMQ-bin.tar.gz | tar -xvz -C /opt
-RUN mv /opt/$ACTIVEMQ $ACTIVEMQ_HOME && \
+    curl -s -S https://archive.apache.org/dist/activemq/$ACTIVEMQ_VERSION/$ACTIVEMQ-bin.tar.gz | tar -xvz -C /opt && \
+    mv /opt/$ACTIVEMQ $ACTIVEMQ_HOME && \
     addgroup -S activemq && \
     adduser -S -H -G activemq -h $ACTIVEMQ_HOME activemq && \
     chown -R activemq:activemq $ACTIVEMQ_HOME && \
