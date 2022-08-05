@@ -15,6 +15,8 @@ RUN apk add --update curl && \
     adduser -S -H -G activemq -h $ACTIVEMQ_HOME activemq && \
     chown -R activemq:activemq $ACTIVEMQ_HOME && \
     chown -h activemq:activemq $ACTIVEMQ_HOME
+    
+RUN   sed -i "s|"127.0.0.1"|"0.0.0.0"|g" $ACTIVEMQ_HOME/conf/jetty.xml
 
 EXPOSE 1883 5672 8161 61613 61614 61616
 
