@@ -4,41 +4,8 @@ Based on [bellsoft/liberica-openjdk-alpine:13](https://hub.docker.com/r/bellsoft
 
 Published on the Docker Hub: https://hub.docker.com/r/symptoma/activemq
 
-## ActiveMQ version
+## Usage
 
-Current version of ActiveMQ is **5.17.1**: https://archive.apache.org/dist/activemq/5.17.1/
-
-Note: Since ActiveMQ 5.16.0 the Web Console is not reachable by default, as it only listens to 127.0.0.1 inside the container. See [AMQ-8018](https://issues.apache.org/jira/browse/AMQ-8018) for more details.
-
-## Settings
-You can define the following environment variables to control the behavior. 
-
-| Environment Variable                    | Default | Description                                                                                                                                                                   |
-|:----------------------------------------|:--------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| ACTIVEMQ_USERNAME                       | system  | [Security](https://activemq.apache.org/security) (credentials.properties)                                                                                                     |
-| ACTIVEMQ_PASSWORD                       | manager | [Security](https://activemq.apache.org/security) (credentials.properties)                                                                                                     |
-| ACTIVEMQ_WEBADMIN_USERNAME              | admin   | [WebConsole](https://activemq.apache.org/security) (jetty-realm.properties)                                                                                                   |
-| ACTIVEMQ_WEBADMIN_PASSWORD              | admin   | [WebConsole](https://activemq.apache.org/security) (jetty-realm.properties)                                                                                                   |
-| ACTIVEMQ_WEBCONSOLE_USE_DEFAULT_ADDRESS | false   | Set default behavior of ActiveMQ Jetty listen address (127.0.0.1). By default, WebConsole listens on all addresses (0.0.0.0), so you can reach/map the WebConsole port (8161) |
-
-## Exposed Ports
-The following ports are exposed and can be bound:
-
-| Port  | Description |
-|:------|:------------|
-| 1883  | MQTT        |
-| 5672  | AMPQ        |
-| 8161  | WebConsole  |
-| 61613 | STOMP       |
-| 61614 | WS          |
-| 61616 | OpenWire    |
-
-## Build
-```
-./build.sh
-```
-
-## Run
 ```
 docker run -it -p 61616:61616 -p 8161:8161 symptoma/activemq:latest
 ```
@@ -57,6 +24,43 @@ docker run -it \
 symptoma/activemq:latest
 ```
 
+## ActiveMQ version
+
+Current version of ActiveMQ is **5.17.1**: https://archive.apache.org/dist/activemq/5.17.1/
+
+Note: Since ActiveMQ 5.16.0 the Web Console is not reachable by default, as it only listens to 127.0.0.1 inside the container. See [AMQ-8018](https://issues.apache.org/jira/browse/AMQ-8018) for more details.
+
+## Settings
+
+You can define the following environment variables to control the behavior. 
+
+| Environment Variable                    | Default | Description                                                                                                                                                                   |
+|:----------------------------------------|:--------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ACTIVEMQ_USERNAME                       | system  | [Security](https://activemq.apache.org/security) (credentials.properties)                                                                                                     |
+| ACTIVEMQ_PASSWORD                       | manager | [Security](https://activemq.apache.org/security) (credentials.properties)                                                                                                     |
+| ACTIVEMQ_WEBADMIN_USERNAME              | admin   | [WebConsole](https://activemq.apache.org/security) (jetty-realm.properties)                                                                                                   |
+| ACTIVEMQ_WEBADMIN_PASSWORD              | admin   | [WebConsole](https://activemq.apache.org/security) (jetty-realm.properties)                                                                                                   |
+| ACTIVEMQ_WEBCONSOLE_USE_DEFAULT_ADDRESS | false   | Set default behavior of ActiveMQ Jetty listen address (127.0.0.1). By default, WebConsole listens on all addresses (0.0.0.0), so you can reach/map the WebConsole port (8161) |
+
+## Exposed Ports
+
+The following ports are exposed and can be bound:
+
+| Port  | Description |
+|:------|:------------|
+| 1883  | MQTT        |
+| 5672  | AMPQ        |
+| 8161  | WebConsole  |
+| 61613 | STOMP       |
+| 61614 | WS          |
+| 61616 | OpenWire    |
+
+## Build
+
+```
+./build.sh
+```
+
 ## Publish
 
 First, commit your change to Git. 
@@ -71,7 +75,7 @@ Then push it to Github.
 
 `git push && git push origin --tags`
 
-Each commit to master is automatically published to Docker Hub in the `latest` label. Tags are published in the corresponding versions.
+~~Each commit to master is automatically published to Docker Hub in the `latest` label. Tags are published in the corresponding versions.~~
 
 Publishing manually works like this (after `docker login`):
 
