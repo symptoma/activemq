@@ -8,7 +8,7 @@ Published on the Docker Hub: https://hub.docker.com/r/symptoma/activemq
 
 Current version of ActiveMQ is **5.17.1**: https://archive.apache.org/dist/activemq/5.17.1/
 
-Note: Since ActiveMQ 5.15.0 the Web Console is not reachable by default, as it only listens to 127.0.0.1 inside the container. See [AMQ-8018](https://issues.apache.org/jira/browse/AMQ-8018) for more details.
+Note: Since ActiveMQ 5.16.0 the Web Console is not reachable by default, as it only listens to 127.0.0.1 inside the container. See [AMQ-8018](https://issues.apache.org/jira/browse/AMQ-8018) for more details.
 
 ## Settings
 You can define the following environment variables to control the behavior. 
