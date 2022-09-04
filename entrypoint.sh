@@ -5,9 +5,9 @@ activemq_webadmin_pw="admin"
 
 ## Modify jetty.xml
 
-# WebConsole to listen on all addresses (beginning with 2.17, it listens on 127.0.0.1 by default, so is unreachable in Container)
+# WebConsole to listen on all addresses (beginning with 5.16.0, it listens on 127.0.0.1 by default, so is unreachable in Container)
 # Bind to all addresses by default. Can be disabled setting ACTIVEMQ_WEBCONSOLE_USE_DEFAULT_ADDRESS=true
-if [ ! "$ACTIVEMQ_WEBCONSOLE_USE_DEFAULT_ADDRESS" == "true" ]; then
+if [ ! "$ACTIVEMQ_WEBCONSOLE_USE_DEFAULT_ADDRESS" = "true" ]; then
   echo "Allowing WebConsole listen to 0.0.0.0"
   sed -i 's#<property name="host" value="127.0.0.1"/>#<property name="host" value="0.0.0.0"/>#' conf/jetty.xml
 fi
