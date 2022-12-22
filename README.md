@@ -1,6 +1,6 @@
 ## Dockerfile to build a ActiveMQ container image.
 
-Based on [bellsoft/liberica-openjdk-alpine:13](https://hub.docker.com/r/bellsoft/liberica-openjdk-alpine), as lightweight as possible AND multiarch (Support for Apple M1 chip / aarch64 aka ARM64). 
+Based on [bellsoft/liberica-openjdk-alpine:17](https://hub.docker.com/r/bellsoft/liberica-openjdk-alpine), as lightweight as possible AND multiarch (Support for Apple M1 chip / aarch64 aka ARM64). 
 
 Published on the Docker Hub: https://hub.docker.com/r/symptoma/activemq
 
@@ -26,7 +26,7 @@ symptoma/activemq:latest
 
 ## ActiveMQ version
 
-Current version of ActiveMQ is **5.17.2**: https://archive.apache.org/dist/activemq/5.17.2/
+Current version of ActiveMQ is **5.17.3**: https://archive.apache.org/dist/activemq/5.17.3/
 
 Note: Since ActiveMQ 5.16.0 the Web Console is not reachable by default, as it only listens to 127.0.0.1 inside the container. See [AMQ-8018](https://issues.apache.org/jira/browse/AMQ-8018) for more details.
 
@@ -68,11 +68,11 @@ The following ports are exposed and can be bound:
 
 First, commit your change to Git. 
 
-`git commit -m "Update ActiveMQ to 5.17.2"`
+`git commit -m "Update ActiveMQ to 5.17.3"`
 
 Then tag it. 
 
-`git tag -a v5.17.2 -m 'Release 5.17.2'`
+`git tag -a v5.17.3 -m 'Release 5.17.3'`
 
 Then push it to Github.
 
@@ -83,7 +83,7 @@ Then push it to Github.
 Publishing manually works like this (after `docker login`):
 
 ```
-docker tag f1aa123a520f symptoma/activemq:5.17.2
+docker tag f1aa123a520f symptoma/activemq:5.17.3
 docker push symptoma/activemq
 ```
 
@@ -96,5 +96,5 @@ Prepare the buildx context and use it:
 
 Then build for multiple platforms:
 
-* `docker buildx build --push --platform linux/arm,linux/arm64,linux/amd64 --tag symptoma/activemq:5.17.2 .`
+* `docker buildx build --push --platform linux/arm,linux/arm64,linux/amd64 --tag symptoma/activemq:5.17.3 .`
 * `docker buildx build --push --platform linux/arm,linux/arm64,linux/amd64 --tag symptoma/activemq:latest .`
