@@ -43,8 +43,15 @@ if [ -n "$ACTIVEMQ_WEBADMIN_PASSWORD" ]; then
 fi
 
 if [ -n "$ACTIVEMQ_WEBADMIN_USERNAME"  ] || [ -n "$ACTIVEMQ_WEBADMIN_PASSWORD" ]; then
-    echo "Setting activemq WebConsole $has_modified_webadmin_username $has_modified_webadmin_pw"
-    sed -i "s#admin: admin, admin#$activemq_webadmin_username: $activemq_webadmin_pw, admin#" conf/jetty-realm.properties
+  echo "Setting activemq WebConsole $has_modified_webadmin_username $has_modified_webadmin_pw"
+  sed -i "s#admin: admin, admin#$activemq_webadmin_username: $activemq_webadmin_pw, admin#" conf/jetty-realm.properties
+fi
+
+## Modify activemq.xml
+
+if [ "$ACTIVEMQ_ENABLE_SCHEDULER" = "true" ]; then
+  echo "Enabling the scheduler"
+  sed -i 's#<broker xmlns="http://activemq.apache.org/schema/core" brokerName="localhost" dataDirectory="${activemq.data}">#<broker xmlns="http://activemq.apache.org/schema/core" brokerName="localhost" dataDirectory="${activemq.data}" schedulerSupport="true">#' conf/activemq.xml 
 fi
 
 # Start
