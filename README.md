@@ -90,8 +90,7 @@ docker push symptoma/activemq
 
 Prepare the buildx context and use it:
 
-* `docker buildx create`
-* `docker buildx use <name>`
+* `BUILDER_NAME=$(docker buildx create) && docker buildx use $BUILDER_NAME`
 
 Then build for multiple platforms:
 
