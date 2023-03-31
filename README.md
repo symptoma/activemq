@@ -26,7 +26,7 @@ symptoma/activemq:latest
 
 ## ActiveMQ version
 
-Current version of ActiveMQ is **5.17.4**: https://archive.apache.org/dist/activemq/5.17.4/
+Current version of ActiveMQ is **5.18.0**: https://archive.apache.org/dist/activemq/5.18.0/
 
 Note: Since ActiveMQ 5.16.0 the Web Console is not reachable by default, as it only listens to 127.0.0.1 inside the container. See [AMQ-8018](https://issues.apache.org/jira/browse/AMQ-8018) for more details.
 
@@ -69,22 +69,20 @@ The following ports are exposed and can be bound:
 
 First, commit your change to Git. 
 
-`git commit -m "Update ActiveMQ to 5.17.4"`
+`git commit -m "Update ActiveMQ to 5.18.0"`
 
 Then tag it. 
 
-`git tag -a v5.17.4 -m 'Release 5.17.4'`
+`git tag -a v5.18.0 -m 'Release 5.18.0'`
 
 Then push it to Github.
 
 `git push && git push origin --tags`
 
-~~Each commit to master is automatically published to Docker Hub in the `latest` label. Tags are published in the corresponding versions.~~
-
 Publishing manually works like this (after `docker login`):
 
 ```
-docker tag f1aa123a520f symptoma/activemq:5.17.4
+docker tag <image> symptoma/activemq:5.18.0
 docker push symptoma/activemq
 ```
 
@@ -97,5 +95,5 @@ Prepare the buildx context and use it:
 
 Then build for multiple platforms:
 
-* `docker buildx build --push --platform linux/arm64,linux/amd64 --tag symptoma/activemq:5.17.4 .`
+* `docker buildx build --push --platform linux/arm64,linux/amd64 --tag symptoma/activemq:5.18.0 .`
 * `docker buildx build --push --platform linux/arm64,linux/amd64 --tag symptoma/activemq:latest .`
