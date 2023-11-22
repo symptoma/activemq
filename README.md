@@ -16,7 +16,6 @@ Example with environment variables:
 docker run -it \
 -p 61616:61616 \
 -p 8161:8161 \
--e ACTIVEMQ_DISALLOW_WEBCONSOLE=false \
 -e ACTIVEMQ_USERNAME=myactivemquser \
 -e ACTIVEMQ_PASSWORD=myactivemquserpass \
 -e ACTIVEMQ_WEBADMIN_USERNAME=roos \
