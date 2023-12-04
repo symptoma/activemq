@@ -44,7 +44,18 @@ fi
 
 if [ -n "$ACTIVEMQ_WEBADMIN_USERNAME"  ] || [ -n "$ACTIVEMQ_WEBADMIN_PASSWORD" ]; then
   echo "Setting activemq WebConsole $has_modified_webadmin_username $has_modified_webadmin_pw"
-  sed -i "s#admin: admin, admin#$activemq_webadmin_username: $activemq_webadmin_pw, admin#" conf/jetty-realm.properties
+
+  # If file conf/jetty-realm.properties exists
+  if [[ -e conf/jetty-realm.properties ]]; then
+    sed -i "s#admin: admin, admin#$activemq_webadmin_username: $activemq_webadmin_pw, admin#" conf/jetty-realm.properties
+  fi
+
+  # If file conf/jetty-realm.properties not exists
+  if [[ ! -e conf/jetty-realm.properties ]]; then
+    mkdir -p conf
+    touch conf/jetty-realm.properties
+    echo "$activemq_webadmin_username: $activemq_webadmin_pw, admin" >> conf/jetty-realm.properties
+  fi
 fi
 
 ## Modify activemq.xml
