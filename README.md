@@ -68,11 +68,11 @@ The following ports are exposed and can be bound:
 
 First, commit your change to Git. 
 
-`git commit -m "Update ActiveMQ to 5.18.3"`
+`git commit -m "Update ActiveMQ to 5.18.4"`
 
 Then tag it. 
 
-`git tag -a v5.18.3 -m 'Release 5.18.3'`
+`git tag -a v5.18.4 -m 'Release 5.18.4'`
 
 Then push it to Github.
 
@@ -81,7 +81,7 @@ Then push it to Github.
 Publishing manually works like this (after `docker login`):
 
 ```
-docker tag <image> symptoma/activemq:5.18.3
+docker tag <image> symptoma/activemq:5.18.4
 docker push symptoma/activemq
 ```
 
@@ -93,5 +93,5 @@ Prepare the buildx context and use it:
 
 Then build for multiple platforms:
 
-* `docker buildx build --push --platform linux/arm64,linux/amd64 --tag symptoma/activemq:5.18.3 .`
+* `docker buildx build --push --platform linux/arm64,linux/amd64 --tag symptoma/activemq:5.18.4 .`
 * `docker buildx build --push --platform linux/arm64,linux/amd64 --tag symptoma/activemq:latest .`
