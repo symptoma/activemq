@@ -25,7 +25,7 @@ symptoma/activemq:latest
 
 ## ActiveMQ version
 
-Current version of ActiveMQ is **5.18.3**: https://archive.apache.org/dist/activemq/5.18.3/
+Current version of ActiveMQ is **5.18.4**: https://archive.apache.org/dist/activemq/5.18.4/
 
 Note: Since ActiveMQ 5.16.0 the Web Console is not reachable by default, as it only listens to 127.0.0.1 inside the container. See [AMQ-8018](https://issues.apache.org/jira/browse/AMQ-8018) for more details.
 

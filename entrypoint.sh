@@ -22,14 +22,19 @@ if [ -n "$ACTIVEMQ_API_CONTEXTPATH" ]; then
   sed -iv "s#<property name=\"contextPath\" value=\"/api\" />#<property name=\"contextPath\" value=\"${ACTIVEMQ_API_CONTEXTPATH}\" />#" conf/jetty.xml
 fi
 
-if [ -n "$ACTIVEMQ_USERNAME" ]; then
-  echo "Setting activemq username to $ACTIVEMQ_USERNAME"
-  sed -i "s#activemq.username=system#activemq.username=$ACTIVEMQ_USERNAME#" conf/credentials.properties
-fi
-
-if [ -n "$ACTIVEMQ_PASSWORD" ]; then
-  echo "Setting activemq password"
-  sed -i "s#activemq.password=manager#activemq.password=$ACTIVEMQ_PASSWORD#" conf/credentials.properties
+# Enable security by adding simpleAuthenticationPlugin
+if [ -n "$ACTIVEMQ_USERNAME" ] && [ -n "$ACTIVEMQ_PASSWORD" ]; then
+  echo "Enabling security by adding simpleAuthenticationPlugin to activemq.xml"
+  if ! grep -q "<simpleAuthenticationPlugin>" conf/activemq.xml; then
+    sed -i '/<\/broker>/i \
+    <plugins>\
+      <simpleAuthenticationPlugin>\
+        <users>\
+          <authenticationUser username="'"$ACTIVEMQ_USERNAME"'" password="'"$ACTIVEMQ_PASSWORD"'" groups="users,admins"/>\
+        </users>\
+      </simpleAuthenticationPlugin>\
+    </plugins>' conf/activemq.xml
+  fi
 fi
 
 if [ -n "$ACTIVEMQ_WEBADMIN_USERNAME" ]; then
