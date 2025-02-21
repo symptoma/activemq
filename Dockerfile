@@ -2,9 +2,9 @@ FROM bellsoft/liberica-openjdk-alpine:17
 
 LABEL maintainer="Thomas Lutz <lutz@symptoma.com>"
 
-ENV ACTIVEMQ_VERSION 5.18.4
-ENV ACTIVEMQ apache-activemq-$ACTIVEMQ_VERSION
-ENV ACTIVEMQ_HOME /opt/activemq
+ENV ACTIVEMQ_VERSION=5.18.6
+ENV ACTIVEMQ=apache-activemq-$ACTIVEMQ_VERSION
+ENV ACTIVEMQ_HOME=/opt/activemq
 
 RUN apk add --update curl && \
     rm -rf /var/cache/apk/* && \
