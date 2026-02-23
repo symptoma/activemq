@@ -1,18 +1,20 @@
-## Dockerfile to build a ActiveMQ container image.
+# Dockerfile to build a ActiveMQ container image
 
-Based on [bellsoft/liberica-openjdk-alpine:17](https://hub.docker.com/r/bellsoft/liberica-openjdk-alpine), as lightweight as possible AND multiarch (Support for Apple M1 chip / aarch64 aka ARM64). 
+Based on [bellsoft/liberica-openjdk-alpine:17](https://hub.docker.com/r/bellsoft/liberica-openjdk-alpine), as lightweight as possible AND multiarch (Support for Apple M1 chip / aarch64 aka ARM64).
 
-Published on the Docker Hub: https://hub.docker.com/r/symptoma/activemq
+Published on the Docker Hub: <https://hub.docker.com/r/symptoma/activemq>
 
 ## Usage
 
-```
+```bash
 docker run -it -p 61616:61616 -p 8161:8161 symptoma/activemq:latest
 ```
+
 Bind more ports if you need to.
 
 Example with environment variables:
-```
+
+```bash
 docker run -it \
 -p 61616:61616 \
 -p 8161:8161 \
@@ -25,13 +27,13 @@ symptoma/activemq:latest
 
 ## ActiveMQ version
 
-Current version of ActiveMQ is **5.18.6**: https://archive.apache.org/dist/activemq/5.18.6/
+Current version of ActiveMQ is **5.19.2**: <https://archive.apache.org/dist/activemq/5.19.2/>
 
 Note: Since ActiveMQ 5.16.0 the Web Console is not reachable by default, as it only listens to 127.0.0.1 inside the container. See [AMQ-8018](https://issues.apache.org/jira/browse/AMQ-8018) for more details.
 
 ## Settings
 
-You can define the following environment variables to control the behavior. 
+You can define the following environment variables to control the behavior.
 
 | Environment Variable                    | Default | Description                                                                                                                                                                   |
 | :-------------------------------------- | :------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -43,7 +45,6 @@ You can define the following environment variables to control the behavior.
 | ACTIVEMQ_ADMIN_CONTEXTPATH              | /admin  | [WebConsole](https://github.com/apache/activemq/blob/main/assembly/src/release/conf/jetty.xml) Set contextPath of WebConsole (jetty.xml)                                      |
 | ACTIVEMQ_API_CONTEXTPATH                | /api    | [API](https://github.com/apache/activemq/blob/main/assembly/src/release/conf/jetty.xml) Set contextPath of API (jetty.xml)                                                    |
 | ACTIVEMQ_ENABLE_SCHEDULER               | false   | Enable the scheduler by setting `schedulerSupport` to `true` in `activemq.xml`                                                                                                |
-
 
 ## Exposed Ports
 
@@ -60,19 +61,19 @@ The following ports are exposed and can be bound:
 
 ## Build
 
-```
+```bash
 ./build.sh
 ```
 
 ## Publish
 
-First, commit your change to Git. 
+First, commit your change to Git.
 
-`git commit -m "Update ActiveMQ to 5.18.6"`
+`git commit -m "Update ActiveMQ to 5.19.2"`
 
-Then tag it. 
+Then tag it.
 
-`git tag -a v5.18.6 -m 'Release 5.18.6'`
+`git tag -a v5.19.2 -m 'Release 5.19.2'`
 
 Then push it to Github.
 
@@ -80,8 +81,8 @@ Then push it to Github.
 
 Publishing manually works like this (after `docker login`):
 
-```
-docker tag <image> symptoma/activemq:5.18.6
+```bash
+docker tag <image> symptoma/activemq:5.19.2
 docker push symptoma/activemq
 ```
 
@@ -93,5 +94,5 @@ Prepare the buildx context and use it:
 
 Then build for multiple platforms:
 
-* `docker buildx build --push --platform linux/arm64,linux/amd64 --tag symptoma/activemq:5.18.6 .`
+* `docker buildx build --push --platform linux/arm64,linux/amd64 --tag symptoma/activemq:5.19.2 .`
 * `docker buildx build --push --platform linux/arm64,linux/amd64 --tag symptoma/activemq:latest .`
