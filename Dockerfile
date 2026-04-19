@@ -2,7 +2,7 @@ FROM bellsoft/liberica-openjdk-alpine:17
 
 LABEL maintainer="Thomas Lutz <lutz@symptoma.com>"
 
-ENV ACTIVEMQ_VERSION=5.19.2
+ENV ACTIVEMQ_VERSION=5.19.5
 ENV ACTIVEMQ=apache-activemq-$ACTIVEMQ_VERSION
 ENV ACTIVEMQ_HOME=/opt/activemq
 
