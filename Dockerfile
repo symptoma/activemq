@@ -1,12 +1,13 @@
-FROM bellsoft/liberica-openjdk-alpine:17@sha256:d2c742e577821c70c97e06156fd089734105a99a73e6785205bb4fe4a02cb19b
+FROM bellsoft/liberica-openjdk-alpine:25@sha256:b728c08690506dac4ed7150ab40f406236d43f487c51a72f375e817f02d7cbde
 
 LABEL maintainer="Thomas Lutz <lutz@symptoma.com>"
 
-ENV ACTIVEMQ_VERSION=5.19.10
+ENV ACTIVEMQ_VERSION=6.3.2
 ENV ACTIVEMQ=apache-activemq-$ACTIVEMQ_VERSION
 ENV ACTIVEMQ_HOME=/opt/activemq
 
-RUN apk add --no-cache curl && \
+RUN apk upgrade --no-cache && \
+    apk add --no-cache curl && \
     mkdir -p /opt && \
     mkdir -p /tmp/activemq-download && \
     cd /tmp/activemq-download && \
@@ -20,6 +21,7 @@ RUN apk add --no-cache curl && \
     tar -xzf "$ACTIVEMQ-bin.tar.gz" -C /opt && \
     rm -rf /tmp/activemq-download && \
     mv /opt/$ACTIVEMQ $ACTIVEMQ_HOME && \
+    mkdir -p $ACTIVEMQ_HOME/tmp && \
     addgroup -S activemq && \
     adduser -S -H -G activemq -h $ACTIVEMQ_HOME activemq && \
     chown -R activemq:activemq $ACTIVEMQ_HOME && \
@@ -28,7 +30,11 @@ RUN apk add --no-cache curl && \
 EXPOSE 1883 5672 8161 61613 61614 61616
 
 COPY entrypoint.sh /
-RUN chmod +x /entrypoint.sh
+COPY jetty-security-headers.xml $ACTIVEMQ_HOME/conf/jetty/
+RUN chmod +x /entrypoint.sh && \
+    chown activemq:activemq $ACTIVEMQ_HOME/conf/jetty/jetty-security-headers.xml && \
+    sed -i 's#jetty-dos.xml$#jetty-dos.xml,jetty-security-headers.xml#' \
+      $ACTIVEMQ_HOME/conf/jetty-spring.properties
 
 USER activemq
 WORKDIR $ACTIVEMQ_HOME

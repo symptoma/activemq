@@ -1,6 +1,6 @@
 # Dockerfile to build a ActiveMQ container image
 
-Based on [bellsoft/liberica-openjdk-alpine:17](https://hub.docker.com/r/bellsoft/liberica-openjdk-alpine), as lightweight as possible AND multiarch (Support for Apple M1 chip / aarch64 aka ARM64).
+Based on [bellsoft/liberica-openjdk-alpine:25](https://hub.docker.com/r/bellsoft/liberica-openjdk-alpine), as lightweight as possible and multi-architecture (including Apple Silicon / ARM64).
 
 Published on the Docker Hub: <https://hub.docker.com/r/symptoma/activemq>
 
@@ -27,9 +27,9 @@ symptoma/activemq:latest
 
 ## ActiveMQ version
 
-Current version of ActiveMQ is **5.19.10**: <https://archive.apache.org/dist/activemq/5.19.10/>
+Current version of ActiveMQ is **6.3.2**: <https://activemq.apache.org/components/classic/download/classic-06-03-02>
 
-Note: Since ActiveMQ 5.16.0 the Web Console is not reachable by default, as it only listens to 127.0.0.1 inside the container. See [AMQ-8018](https://issues.apache.org/jira/browse/AMQ-8018) for more details.
+ActiveMQ 6 uses Java 17 or later and a modular Jetty 12 configuration. This image uses Java 25, the Java version recommended by ActiveMQ when virtual threads are available.
 
 ## Settings
 
@@ -37,14 +37,16 @@ You can define the following environment variables to control the behavior.
 
 | Environment Variable                    | Default | Description                                                                                                                                                                   |
 | :-------------------------------------- | :------ | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ACTIVEMQ_USERNAME                       | system  | [Security](https://activemq.apache.org/security) (credentials.properties)                                                                                                     |
-| ACTIVEMQ_PASSWORD                       | manager | [Security](https://activemq.apache.org/security) (credentials.properties)                                                                                                     |
-| ACTIVEMQ_WEBADMIN_USERNAME              | admin   | [WebConsole](https://activemq.apache.org/security) (jetty-realm.properties)                                                                                                   |
-| ACTIVEMQ_WEBADMIN_PASSWORD              | admin   | [WebConsole](https://activemq.apache.org/security) (jetty-realm.properties)                                                                                                   |
-| ACTIVEMQ_WEBCONSOLE_USE_DEFAULT_ADDRESS | false   | Set default behavior of ActiveMQ Jetty listen address (127.0.0.1). By default, WebConsole listens on all addresses (0.0.0.0), so you can reach/map the WebConsole port (8161) |
-| ACTIVEMQ_ADMIN_CONTEXTPATH              | /admin  | [WebConsole](https://github.com/apache/activemq/blob/main/assembly/src/release/conf/jetty.xml) Set contextPath of WebConsole (jetty.xml)                                      |
-| ACTIVEMQ_API_CONTEXTPATH                | /api    | [API](https://github.com/apache/activemq/blob/main/assembly/src/release/conf/jetty.xml) Set contextPath of API (jetty.xml)                                                    |
-| ACTIVEMQ_ENABLE_SCHEDULER               | false   | Enable the scheduler by setting `schedulerSupport` to `true` in `activemq.xml`                                                                                                |
+| ACTIVEMQ_USERNAME                       | unset   | Enables broker JAAS authentication when set together with `ACTIVEMQ_PASSWORD`                                                                                          |
+| ACTIVEMQ_PASSWORD                       | unset   | Password for `ACTIVEMQ_USERNAME`                                                                                                                                       |
+| ACTIVEMQ_WEBADMIN_USERNAME              | admin   | Web Console administrator in the shared JAAS user store                                                                                                                |
+| ACTIVEMQ_WEBADMIN_PASSWORD              | admin   | Web Console administrator password                                                                                                                                     |
+| ACTIVEMQ_WEBCONSOLE_USE_DEFAULT_ADDRESS | false   | Preserve the upstream Jetty bind address and loopback-only IP filter when `true`; otherwise listen on container interfaces and allow private container networks         |
+| ACTIVEMQ_ADMIN_CONTEXTPATH              | /admin  | [Web Console](https://github.com/apache/activemq/blob/main/assembly/src/release/conf/jetty/jetty-webapps.xml) context path                                               |
+| ACTIVEMQ_API_CONTEXTPATH                | /api    | [Jolokia API](https://github.com/apache/activemq/blob/main/assembly/src/release/conf/jetty/jetty-webapps.xml) context path                                               |
+| ACTIVEMQ_ENABLE_SCHEDULER               | false   | Enable the scheduler by setting `schedulerSupport` to `true` in `activemq.xml`                                                                                          |
+
+Broker authentication is disabled unless both broker credential variables are set. ActiveMQ 6 uses the same JAAS property files for broker and Web Console authentication. Broker and Web Console users may be different; if the same username is used for both, its passwords must also match.
 
 ## Exposed Ports
 
@@ -69,11 +71,11 @@ The following ports are exposed and can be bound:
 
 First, commit your change to Git.
 
-`git commit -m "Update ActiveMQ to 5.19.10"`
+`git commit -m "Update ActiveMQ to 6.3.2"`
 
 Then tag it.
 
-`git tag -a v5.19.10 -m 'Release 5.19.10'`
+`git tag -a v6.3.2 -m 'Release 6.3.2'`
 
 Then push it to Github.
 
@@ -82,7 +84,7 @@ Then push it to Github.
 Publishing manually works like this (after `docker login`):
 
 ```bash
-docker tag <image> symptoma/activemq:5.19.10
+docker tag <image> symptoma/activemq:6.3.2
 docker push symptoma/activemq
 ```
 
@@ -94,5 +96,5 @@ Prepare the buildx context and use it:
 
 Then build for multiple platforms:
 
-* `docker buildx build --push --platform linux/arm64,linux/amd64 --tag symptoma/activemq:5.19.10 .`
+* `docker buildx build --push --platform linux/arm64,linux/amd64 --tag symptoma/activemq:6.3.2 .`
 * `docker buildx build --push --platform linux/arm64,linux/amd64 --tag symptoma/activemq:latest .`
