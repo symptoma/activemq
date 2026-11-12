@@ -27,7 +27,7 @@ symptoma/activemq:latest
 
 ## ActiveMQ version
 
-Current version of ActiveMQ is **6.3.2**: <https://activemq.apache.org/components/classic/download/classic-06-03-02>
+Current version of ActiveMQ is **6.4.0**: <https://activemq.apache.org/components/classic/download/classic-06-04-00>
 
 ActiveMQ 6 uses Java 17 or later and a modular Jetty 12 configuration. This image uses Java 25, the Java version recommended by ActiveMQ when virtual threads are available.
 
@@ -71,11 +71,11 @@ The following ports are exposed and can be bound:
 
 First, commit your change to Git.
 
-`git commit -m "Update ActiveMQ to 6.3.2"`
+`git commit -m "Update ActiveMQ to 6.4.0"`
 
 Then tag it.
 
-`git tag -a v6.3.2 -m 'Release 6.3.2'`
+`git tag -a v6.4.0 -m 'Release 6.4.0'`
 
 Then push it to Github.
 
@@ -84,7 +84,7 @@ Then push it to Github.
 Publishing manually works like this (after `docker login`):
 
 ```bash
-docker tag <image> symptoma/activemq:6.3.2
+docker tag <image> symptoma/activemq:6.4.0
 docker push symptoma/activemq
 ```
 
@@ -96,5 +96,5 @@ Prepare the buildx context and use it:
 
 Then build for multiple platforms:
 
-* `docker buildx build --push --platform linux/arm64,linux/amd64 --tag symptoma/activemq:6.3.2 .`
+* `docker buildx build --push --platform linux/arm64,linux/amd64 --tag symptoma/activemq:6.4.0 .`
 * `docker buildx build --push --platform linux/arm64,linux/amd64 --tag symptoma/activemq:latest .`
