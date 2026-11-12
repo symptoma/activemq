@@ -2,7 +2,7 @@ FROM bellsoft/liberica-openjdk-alpine:25@sha256:b728c08690506dac4ed7150ab40f4062
 
 LABEL maintainer="Thomas Lutz <lutz@symptoma.com>"
 
-ENV ACTIVEMQ_VERSION=6.3.2
+ENV ACTIVEMQ_VERSION=6.4.0
 ENV ACTIVEMQ=apache-activemq-$ACTIVEMQ_VERSION
 ENV ACTIVEMQ_HOME=/opt/activemq
 

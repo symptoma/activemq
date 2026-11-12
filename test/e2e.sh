@@ -2,7 +2,7 @@
 
 set -eu
 
-IMAGE=${1:-symptoma/activemq:6.3.2-test}
+IMAGE=${1:-symptoma/activemq:6.4.0-test}
 CONTAINER_NAME="activemq-base-e2e-$$"
 BROKER_USER=broker-test
 BROKER_PASSWORD=broker-test-password
@@ -29,7 +29,7 @@ docker run --detach --name "$CONTAINER_NAME" \
 attempt=1
 while [ "$attempt" -le 60 ]; do
   if docker logs "$CONTAINER_NAME" 2>&1 \
-    | grep -F 'Apache ActiveMQ 6.3.2' \
+    | grep -F 'Apache ActiveMQ 6.4.0' \
     | grep -Fq 'started'; then
     break
   fi
@@ -49,7 +49,7 @@ if [ "$attempt" -gt 60 ]; then
 fi
 
 docker exec "$CONTAINER_NAME" java -version 2>&1 | grep -Fq 'openjdk version "25'
-docker exec "$CONTAINER_NAME" bin/activemq --version | grep -Fq 'ActiveMQ 6.3.2'
+docker exec "$CONTAINER_NAME" bin/activemq --version | grep -Fq 'ActiveMQ 6.4.0'
 docker exec "$CONTAINER_NAME" grep -Fq 'schedulerSupport="true"' conf/activemq.xml
 docker exec "$CONTAINER_NAME" grep -Fq '<jaasAuthenticationPlugin configuration="activemq" />' conf/activemq.xml
 
@@ -114,4 +114,4 @@ if docker run --rm \
   exit 1
 fi
 
-echo "ActiveMQ 6.3.2 base image end-to-end test passed"
+echo "ActiveMQ 6.4.0 base image end-to-end test passed"
